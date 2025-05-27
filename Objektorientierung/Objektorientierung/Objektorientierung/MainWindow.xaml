@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
         <StackPanel.Background>
-            <ImageBrush/>
+            <ImageBrush ImageSource="/images.steamusercontent.jpg"/>
         </StackPanel.Background>
         <StackPanel Orientation="Horizontal" Margin="10">
             <Label Width="100">Höhe</Label>

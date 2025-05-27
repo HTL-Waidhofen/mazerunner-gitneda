@@ -11,11 +11,11 @@
             <ImageBrush ImageSource="/images.steamusercontent.jpg"/>
         </StackPanel.Background>
         <StackPanel Orientation="Horizontal" Margin="10">
-            <Label Width="100">Höhe</Label>
+            <Label Width="100" Background="#FFE01A1A">Höhe</Label>
             <TextBox x:Name="tbxHoehe" Width="100"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="10">
-            <Label Width="100">Breite</Label>
+            <Label Width="100" Background="#FFDE0B0B">Breite</Label>
             <TextBox x:Name="tbxBreite" Width="100"></TextBox>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left">

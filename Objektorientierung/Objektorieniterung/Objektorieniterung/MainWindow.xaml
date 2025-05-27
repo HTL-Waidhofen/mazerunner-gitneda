@@ -6,22 +6,34 @@
         xmlns:local="clr-namespace:Objektorieniterung"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <Label Width="100">Höhe </Label>
-            <TextBox x:Name="tbxLaenge" Width="100"></TextBox>
+
+    <StackPanel Orientation="Horizontal">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Label Width="100">Höhe </Label>
+                <TextBox x:Name="tbxLaenge" Width="100"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Label Width="100">Breite</Label>
+                <TextBox x:Name="tbxBreite" Width="100"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Button Width="100">Zeichnen</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Button Width="100">Löschen</Button>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/images.steamusercontent.jpg"/>
+                </StackPanel.Background>
+                <Button Margin="10" Width="100" Click="Button_Click">Speichern</Button>
+                <ListView x:Name="lstRechtecke" Height="200" Width="200" Margin="10" SelectionChanged="lstRechtecke_SelectionChanged"/>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <Label Width="100">Breite</Label>
-            <TextBox x:Name="tbxBreite" Width="100"></TextBox>
+        
+        <StackPanel Width="443">
+            <Canvas Width="334" Height="374" x:Name="myCanvas"/>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Left">
-            <StackPanel.Background>
-                <ImageBrush ImageSource="/images.steamusercontent.jpg"/>
-            </StackPanel.Background>
-            <Button Margin="10" Width="100" Click="Button_Click">Speichern</Button>
-            <ListView x:Name="lstRechtecke" Height="200" Width="200" Margin="10" SelectionChanged="lstRechtecke_SelectionChanged"/>
-        </StackPanel>
-        <Canvas Width="100" Height="100" x:Name="myCanvas"/>
     </StackPanel>
 </Window>

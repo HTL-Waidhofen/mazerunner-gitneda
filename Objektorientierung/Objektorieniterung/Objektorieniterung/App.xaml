@@ -1,7 +1,7 @@
-﻿<Application x:Class="Objektorientierung.App"
+﻿<Application x:Class="Objektorieniterung.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Objektorientierung"
+             xmlns:local="clr-namespace:Objektorieniterung"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

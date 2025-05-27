@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Objektorientierung.Properties
+namespace Objektorieniterung.Properties
 {
 
 

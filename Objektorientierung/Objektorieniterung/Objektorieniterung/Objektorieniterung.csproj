@@ -97,5 +97,15 @@
   <ItemGroup>
     <Resource Include="images.steamusercontent.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="wallsList.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Unbenannt.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

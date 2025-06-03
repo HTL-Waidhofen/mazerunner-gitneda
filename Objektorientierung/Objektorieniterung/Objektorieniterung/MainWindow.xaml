@@ -5,35 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Objektorieniterung"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown">
 
     <StackPanel Orientation="Horizontal">
         <StackPanel>
+          
             <StackPanel Orientation="Horizontal" Margin="10">
-                <Label Width="100">Höhe </Label>
-                <TextBox x:Name="tbxLaenge" Width="100"></TextBox>
+                <Label Width="100">Höhe</Label>
+                <TextBox x:Name="tbxLaenge" Width="100"/>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal" Margin="10">
                 <Label Width="100">Breite</Label>
-                <TextBox x:Name="tbxBreite" Width="100"></TextBox>
+                <TextBox x:Name="tbxBreite" Width="100"/>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal" Margin="10">
-                <Button Width="100">Zeichnen</Button>
+                <Label Width="100">x-Position</Label>
+                <TextBox x:Name="tbxx" Width="100"/>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal" Margin="10">
-                <Button Width="100">Löschen</Button>
+                <Label Width="100">y-Position</Label>
+                <TextBox x:Name="tbxy" Width="100"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left">
-                <StackPanel.Background>
-                    <ImageBrush ImageSource="/images.steamusercontent.jpg"/>
-                </StackPanel.Background>
+
+            <StackPanel x:Name="stp_sidebar" HorizontalAlignment="Left">
                 <Button Margin="10" Width="100" Click="Button_Click">Speichern</Button>
                 <ListView x:Name="lstRechtecke" Height="200" Width="200" Margin="10" SelectionChanged="lstRechtecke_SelectionChanged"/>
+                <Button Content="Zeichnen" Margin="5" Width="100" Click="Button_Zeichnen_Click"/>
+                <Button Margin="10" Content="Starten" Click="Button_Click_1"></Button>
             </StackPanel>
         </StackPanel>
-        
-        <StackPanel Width="443">
-            <Canvas Width="334" Height="374" x:Name="myCanvas"/>
-        </StackPanel>
+
+        <Canvas Width="400" Height="400"  x:Name="myCanvas" Margin="10"/>
     </StackPanel>
 </Window>

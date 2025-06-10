@@ -57,17 +57,23 @@ namespace Objektorieniterung
         public int y;
         public Image image;
         public MainWindow.Direction direction = MainWindow.Direction.None;
-        public Spieler()
+        public List<Rechteck> rechtecke;
+        public Spieler(List<Rechteck> rechtecke)
         {
             x = 1;
             y = 1;
+            this.rechtecke = rechtecke;
         }
         public void SetDirection(MainWindow.Direction direction)
         {
             this.direction = direction;
         }
+        
         public void Move()
         {
+            int currentX = x;
+            int currentY = y;
+
             if (direction == MainWindow.Direction.Left)
             {
                 x--;
@@ -85,6 +91,25 @@ namespace Objektorieniterung
             {
                 y++;
             }
+
+
+            bool collision = false;
+
+            foreach ( Rechteck r in rechtecke)
+            {
+                if(r.posX == x*MainWindow.GRID_SIZE && r.posY == y*MainWindow.GRID_SIZE)
+                {
+                    collision = true;
+
+                }
+            }
+            if(collision)
+            {
+                x = currentX;
+                y = currentY;
+            }
+
+
 
             Canvas.SetTop(image, y * MainWindow.GRID_SIZE);
             Canvas.SetLeft(image, x * MainWindow.GRID_SIZE);
@@ -108,7 +133,7 @@ namespace Objektorieniterung
         DispatcherTimer timer = null;
 
         List<Rechteck> rechtecke = new List<Rechteck>();
-        Spieler spieler = new Spieler();
+        Spieler spieler;
         public static int GRID_SIZE = 10;
 
         private void Update (object sender, EventArgs e)
@@ -121,9 +146,7 @@ namespace Objektorieniterung
         public MainWindow()
         {
             InitializeComponent();
-
-            
-
+            spieler = new Spieler(rechtecke);
              
             StreamReader reader = new StreamReader("wallsList.txt");
             string zeile;

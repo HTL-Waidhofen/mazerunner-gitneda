@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Objektorieniterung
 {
@@ -54,29 +56,32 @@ namespace Objektorieniterung
         public int x;
         public int y;
         public Image image;
-
+        public MainWindow.Direction direction = MainWindow.Direction.None;
         public Spieler()
         {
             x = 1;
             y = 1;
         }
-
-        public void Move(Key key)
+        public void SetDirection(MainWindow.Direction direction)
         {
-            if (key == Key.Left)
+            this.direction = direction;
+        }
+        public void Move()
+        {
+            if (direction == MainWindow.Direction.Left)
             {
                 x--;
             }
-            else if (key == Key.Right)
+            else if (direction == MainWindow.Direction.Right)
             {
                 x++;
             }
-            else if (key == Key.Up)
+            else if (direction == MainWindow.Direction.Up)
             {
                 y--;
 
             }
-            else if (key == Key.Down)
+            else if (direction == MainWindow.Direction.Down)
             {
                 y++;
             }
@@ -92,15 +97,34 @@ namespace Objektorieniterung
     /// </summary>
     public partial class MainWindow : Window
     {
+        public enum Direction
+        {
+            None,
+            Up,
+            Down,
+            Left,
+            Right
+        }
+        DispatcherTimer timer = null;
+
         List<Rechteck> rechtecke = new List<Rechteck>();
         Spieler spieler = new Spieler();
         public static int GRID_SIZE = 10;
 
+        private void Update (object sender, EventArgs e)
+        {
+            spieler.Move();
+
+        }
 
 
         public MainWindow()
         {
             InitializeComponent();
+
+            
+
+             
             StreamReader reader = new StreamReader("wallsList.txt");
             string zeile;
             double laenge = 10;
@@ -108,6 +132,7 @@ namespace Objektorieniterung
             double posX = 0;
             double posY = 0;
 
+            
             while ((zeile = reader.ReadLine()) != null)
             {
                 string[] teile = zeile.Split(',');
@@ -238,14 +263,48 @@ namespace Objektorieniterung
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            spieler.Move(e.Key);
+            if (e.Key == Key.Left)
+            {
+                spieler.SetDirection(Direction.Left);
+            }
+            else if (e.Key == Key.Up)
+            {
+                spieler.SetDirection(Direction.Up);
+            }
+            else if (e.Key == Key.Down)
+            {
+                spieler.SetDirection(Direction.Down);
+            }
+            else if (e.Key == Key.Right)
+            {
+                spieler.SetDirection(Direction.Right);
+            }
+
+
+
+
 
 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            stp_sidebar.Visibility = Visibility.Collapsed;
+            if (stp_sidebar.Visibility == Visibility.Collapsed)
+            {
+                stp_sidebar.Visibility = Visibility.Visible;
+                stp_sidebar.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                stp_sidebar.Visibility = Visibility.Collapsed;
+                stp_sidebar.Visibility = Visibility.Collapsed;
+
+                timer = new DispatcherTimer(DispatcherPriority.Render);
+                timer.Interval = TimeSpan.FromMilliseconds(300);
+                timer.Tick += Update;
+                timer.Start();
+            }
+
         }
     }
 }
